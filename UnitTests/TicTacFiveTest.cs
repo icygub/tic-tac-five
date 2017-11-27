@@ -73,7 +73,6 @@ namespace UnitTests {
             tic.PlaceChar('O', 3, 4);
             tic.PlaceChar('O', 4, 4);
             Assert.IsTrue(tic.CheckHorizontals('O'));
-
         }
 
         [TestMethod]
@@ -106,5 +105,30 @@ namespace UnitTests {
             tic.PlaceChar('O', 0, 1);
             Assert.IsTrue(tic.Board[0, 1].Equals('O'));
         }
+        
+        [TestMethod]
+        public void CheckDiagonalUpRight_Should_Return_False_When_There_Are_No_Consecutive_Chars() {
+            TicTacFive tic = new TicTacFive(5, 5);
+            tic.PlaceChar('X', 0, 4);
+            tic.PlaceChar('X', 1, 3);
+            //tic.PlaceChar('X', 2, 2); this should remain commented out
+            tic.PlaceChar('X', 3, 1);
+            tic.PlaceChar('X', 4, 0);
+            Assert.IsFalse(tic.CheckDiagonalUpRight('X'));
+        }
+        
+        [TestMethod]
+        public void CheckDiagonalDownRight_Should_Return_False_When_There_Are_No_Consecutive_Chars() {
+            TicTacFive tac = new TicTacFive(5, 5);
+            tac.PlaceChar('O', 0, 0);
+            tac.PlaceChar('O', 1, 1);
+            // tac.PlaceChar('O', 2, 2); this should remain commented out
+            tac.PlaceChar('O', 3, 3);
+            tac.PlaceChar('O', 4, 4);
+            Assert.IsFalse(tac.CheckDiagonalDownRight('O'));
+        }
+        
+        
+        
     }
 }
