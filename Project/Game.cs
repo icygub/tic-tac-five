@@ -5,79 +5,79 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Project {
-    public class TicTacFive {
+    public class Game {
 
-        private char[,] _board;
-        
-        public TicTacFive(int cols, int rows) {
-            _board = new char[cols, rows];
-            for(int col = 0; col < cols; col++) {
-                for(int row = 0; row < rows; row++) {
-                    _board[col, row] = ' ';
+        private Piece[,] _board;
+
+        public Game(int cols, int rows) {
+            _board = new Piece[cols, rows];
+            for (int col = 0; col < cols; col++) {
+                for (int row = 0; row < rows; row++) {
+                    _board[col, row] = Piece.EMPTY;
                 }
             }
         }
 
-        public char[,] Board {
+        public Piece[,] Board {
             get { return _board; }
             private set { _board = value; }
         }
 
         public bool FieldIsTaken(int col, int row) {
-            return !Board[col, row].Equals(' ');
+            return !Board[col, row].Equals(Piece.EMPTY);
         }
 
-        public bool PlaceChar(char c, int col, int row) {
-            if(! FieldIsTaken(col,row)) {
-                Board[col, row] = c;
+        public bool PlaceChar(Piece p, int col, int row) {
+            if (!FieldIsTaken(col, row)) {
+                Board[col, row] = p;
                 return true;
             }
             return false;
         }
 
-        public bool CheckVerticals(char c) {
+        public bool CheckVerticals(Piece p) {
             bool win = false;
-            for(int col = 0; col < Board.GetLength(0); col++) { //Board.GetLength(0) is number of cols in Board
-                for(int row = 0; row < Board.GetLength(1); row++) {
-                    if(Board[col,row] != c) {
+            for (int col = 0; col < Board.GetLength(0); col++) { //Board.GetLength(0) is number of cols in Board
+                for (int row = 0; row < Board.GetLength(1); row++) {
+                    if (Board[col, row] != p) {
                         break;
                     }
-                    else if(row == Board.GetLength(1) - 1) { 
+                    else if (row == Board.GetLength(1) - 1) {
                         win = true;
                     }
                 }
-                if(win == true) {
+                if (win == true) {
                     break;
                 }
             }
             return win;
         }
 
-        public bool CheckHorizontals(char c) {
+        public bool CheckHorizontals(Piece p) {
             bool win = false;
-            for(int row = 0; row < Board.GetLength(1); row++) { //Board.GetLength(1) is number of rows in Board
+            for (int row = 0; row < Board.GetLength(1); row++) { //Board.GetLength(1) is number of rows in Board
                 for (int col = 0; col < Board.GetLength(0); col++) {
-                    if(Board[col,row] != c) {
+                    if (Board[col, row] != p) {
                         break;
                     }
                     //if last col char matches 
-                    else if(col == Board.GetLength(0) - 1) {
+                    else if (col == Board.GetLength(0) - 1) {
                         win = true;
                     }
                 }
-                if(win == true) {
+                if (win == true) {
                     break;
                 }
             }
             return win;
         }
 
-        public bool CheckDiagonalUpRight(char c) {
+        public bool CheckDiagonalUpRight(Piece p) {
             bool win = false;
             int col = 0;
             // starts at [0,max] and ends at [max,0]
             for (int row = Board.GetLength(1) - 1; row >= 0; row--) {
-                if (Board[col, row] != c) {
+                if (Board[col, row] != p) {
                     break;
                 }
                 else if (row == 0) {
@@ -90,15 +90,15 @@ namespace Project {
             return win;
         }
 
-        public bool CheckDiagonalDownRight(char c) {
+        public bool CheckDiagonalDownRight(Piece p) {
             bool win = false;
             int col = 0;
             // starts at [0,0] and ends at [max,max]
-            for(int row = 0; row < Board.GetLength(1); row++) {
-                if(Board[col,row] != c) {
+            for (int row = 0; row < Board.GetLength(1); row++) {
+                if (Board[col, row] != p) {
                     break;
                 }
-                else if(row == Board.GetLength(1) - 1) {
+                else if (row == Board.GetLength(1) - 1) {
                     win = true;
                 }
                 else {
@@ -106,6 +106,10 @@ namespace Project {
                 }
             }
             return win;
+        }
+
+        public enum Piece {
+            EMPTY, X, O
         }
     }
 }
