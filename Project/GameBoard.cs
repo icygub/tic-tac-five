@@ -35,6 +35,15 @@ namespace Project {
             return false;
         }
 
+        public bool CheckWin(Piece p) {
+            bool win = false;
+            if(CheckVerticals(p) || CheckHorizontals(p) || 
+                CheckDiagonalUpRight(p) || CheckDiagonalDownRight(p)) {
+                win = true;
+            }
+            return win;
+        }
+
         public bool CheckVerticals(Piece p) {
             bool win = false;
             for (int col = 0; col < Board.GetLength(0); col++) { //Board.GetLength(0) is number of cols in Board

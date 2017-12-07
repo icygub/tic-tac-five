@@ -8,20 +8,11 @@ using static Project.GameBoard;
 namespace Project {
     public abstract class Player {
 
-        private string _name;
+        
         private Piece _piece;
 
-        public Player(string name) {
-            Name = name;
-        }
-
-        public string Name {
-            get {
-                return _name;
-            }
-            set {
-                _name = value;
-            }
+        public Player(Piece piece) {
+            Piece = piece;
         }
 
         public Piece Piece {
@@ -32,5 +23,8 @@ namespace Project {
                 _piece = value;
             }
         }
+
+        public abstract bool PlacePiece(GameBoard board, int col, int row);
+    
     }
 }
