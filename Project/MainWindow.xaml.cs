@@ -22,11 +22,19 @@ namespace Project {
 
         private ViewModel viewModel;
         private Piece currentPiece;
+        private Brush XBrush;
+        private Brush OBrush;
+        private Brush currentBrush;
 
         public MainWindow() {
             InitializeComponent();
             viewModel = new ViewModel();
             currentPiece = Piece.X;
+            XBrush = Brushes.Orange;
+            OBrush = Brushes.Purple;
+            currentBrush = XBrush;
+            
+            
         }
 
         private void Button_Click(object sender, RoutedEventArgs e) {
@@ -35,6 +43,13 @@ namespace Project {
             bool piecePlayed = viewModel.PlayPiece(col, row); // if there is no win, then piecePlayed will be true
             if(piecePlayed) {
                 ((Button)sender).Content = Enum.GetName(typeof(Piece), currentPiece);
+                ((Button)sender).Background = currentBrush;
+                if(currentBrush == OBrush) {
+                    ((Button)sender).Foreground = Brushes.White;
+                }
+                //Focus();
+                //((Button)sender).IsFocused = false;
+                currentBrush = (currentBrush == XBrush) ? OBrush: XBrush;
                 if (! viewModel.CheckWin()) {
                     currentPiece = (currentPiece == Piece.X) ? Piece.O : Piece.X;
                 } else {
