@@ -32,12 +32,11 @@ namespace Project {
             currentPiece = Piece.X;
             XBrush = Brushes.Orange;
             OBrush = Brushes.Purple;
-            currentBrush = XBrush;
-            
-            
+            currentBrush = XBrush;            
         }
 
         private void Button_Click(object sender, RoutedEventArgs e) {
+            MessageBox.Show(viewModel.Game.CurrentPlayer.Name);
             int col = Int32.Parse(((Button)sender).Name.Substring(1, 1));
             int row = Int32.Parse(((Button)sender).Name.Substring(2, 1));
             bool piecePlayed = viewModel.PlayPiece(col, row); // if there is no win, then piecePlayed will be true
@@ -53,14 +52,29 @@ namespace Project {
                 if (! viewModel.CheckWin()) {
                     currentPiece = (currentPiece == Piece.X) ? Piece.O : Piece.X;
                 } else {
-                    MessageBox.Show(Enum.GetName(typeof(Piece), currentPiece) + " has WON!");
+                    MessageBox.Show(Enum.GetName(typeof(Piece), currentPiece) + " has WON!" + viewModel.Game.CurrentPlayer.Name +
+                        viewModel.Game.CurrentPlayer.Piece);
                 }
             } else if(viewModel.CheckWin()) {
-                MessageBox.Show(Enum.GetName(typeof(Piece), currentPiece) + " has WON!");
+                MessageBox.Show(Enum.GetName(typeof(Piece), currentPiece) + " has WON!" + viewModel.Game.CurrentPlayer.Name +
+                    viewModel.Game.CurrentPlayer.Piece);
             }
 
             //Enum.GetName(typeof(Piece), Piece.X);
             //MessageBox.Show(col + " " + row);
+        }
+
+        private void startButton_Click(object sender, RoutedEventArgs e) {
+            string player1NameString = player1Name.Text;
+            string player2NameString = player2Name.Text;
+            viewModel.CreateGame(player1NameString, isPlayer1Computer.IsChecked ?? false, player2NameString, isPlayer2Computer.IsChecked ?? false, player1IsX.IsChecked ?? false);
+            resetButton.IsEnabled = true;
+            startButton.IsEnabled = false;
+        }
+
+        private void resetButton_Click(object sender, RoutedEventArgs e) {
+            //gameGrid.InvalidateVisual();
+            //infoGrid.InvalidateVisual();
         }
     }
 }

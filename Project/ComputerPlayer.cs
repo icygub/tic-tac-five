@@ -7,7 +7,19 @@ using System.Threading.Tasks;
 namespace Project {
     public sealed class ComputerPlayer : Player {
 
+        public ComputerPlayer(string name) : base(name) {
+
+        }
+
+        public ComputerPlayer(GameBoard.Piece p, string name) : base(p, name) {
+
+        }
+
         public ComputerPlayer(GameBoard.Piece p) : base(p) {
+        }
+
+        public ComputerPlayer() : base() {
+
         }
 
         public override bool PlacePiece(GameBoard board, int col, int row) {

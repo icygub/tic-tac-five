@@ -28,6 +28,57 @@ namespace Project {
             CurrentPlayer = Player1;
         }
 
+        public Game(bool player1Computer, bool player2Computer, bool player1X) {
+            GameBoard = new GameBoard(5, 5);
+            if (player1Computer) {
+                Player1 = new ComputerPlayer();
+            }
+            else {
+                Player1 = new HumanPlayer();
+            }
+            if (player2Computer) {
+                Player2 = new ComputerPlayer();
+            }
+            else {
+                Player2 = new HumanPlayer();
+            }
+
+            Player1.Piece = (player1X) ? Piece.X : Piece.O;
+            Player2.Piece = (player1X) ? Piece.O : Piece.X;
+            if(Player1.Piece == Piece.X) {
+                CurrentPlayer = Player1;
+            } else {
+                CurrentPlayer = Player2;
+            }
+            
+        }
+
+        public Game(string player1name, bool player1Computer, string player2name, bool player2Computer, bool player1X) {
+            GameBoard = new GameBoard(5, 5);
+            if (player1Computer) {
+                Player1 = new ComputerPlayer(player1name);
+            }
+            else {
+                Player1 = new HumanPlayer(player1name);
+            }
+            if (player2Computer) {
+                Player2 = new ComputerPlayer(player2name);
+            }
+            else {
+                Player2 = new HumanPlayer(player2name);
+            }
+
+            Player1.Piece = (player1X) ? Piece.X : Piece.O;
+            Player2.Piece = (player1X) ? Piece.O : Piece.X;
+            if (Player1.Piece == Piece.X) {
+                CurrentPlayer = Player1;
+            }
+            else {
+                CurrentPlayer = Player2;
+            }
+
+        }
+
         public Game(Player player1, Player player2) {
             GameBoard = new GameBoard(5, 5);
             //_player1 = ()

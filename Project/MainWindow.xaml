@@ -70,7 +70,7 @@
             <RowDefinition Height="2*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0" Grid.Column="0" ShowGridLines="True" Height="500" Width="500">
+        <Grid x:Name="gameGrid" Grid.Row="0" Grid.Column="0" ShowGridLines="True" Height="500" Width="500">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="1*"/>
@@ -115,7 +115,7 @@
             <Button Grid.Column="4" Grid.Row="3" x:Name="B43" Click="Button_Click" Style="{DynamicResource ButtonStyle}"></Button>
             <Button Grid.Column="4" Grid.Row="4" x:Name="B44" Click="Button_Click" Style="{DynamicResource ButtonStyle}"></Button>
         </Grid>
-        <Grid Grid.Row="1" Grid.Column="0" Height="225" Width="250">
+        <Grid x:Name="infoGrid" Grid.Row="1" Grid.Column="0" Height="225" Width="250">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="1*"/>
@@ -136,8 +136,8 @@
             <CheckBox x:Name="isPlayer2Computer" Grid.Column="1" Grid.Row="2" Margin="0,5" Content="Computer?"></CheckBox>
             <RadioButton x:Name="player1IsX" GroupName="XPlayer" Grid.Column="0" Grid.Row="3" Margin="0,5,0,0" Content="X Player" IsChecked="True"></RadioButton>
             <RadioButton x:Name="player2IsX" GroupName="XPlayer" Grid.Column="1" Grid.Row="3" Margin="0,5,0,0" Content="X Player"></RadioButton>
-            <Button x:Name="startButton" Grid.Row="4" Grid.ColumnSpan="2" Content="Start!" Margin="0"></Button>
-            <Button x:Name="resetButton" Grid.Row="5" Grid.ColumnSpan="2" Content="Reset Game" Margin="0,5,0,0" IsEnabled="False"/>
+            <Button x:Name="startButton" Grid.Row="4" Grid.ColumnSpan="2" Content="Start!" Margin="0" Click="startButton_Click"></Button>
+            <Button x:Name="resetButton" Grid.Row="5" Grid.ColumnSpan="2" Content="Reset Game" Margin="0,5,0,0" IsEnabled="False" Click="resetButton_Click"/>
         </Grid>
         
     </Grid>

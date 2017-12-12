@@ -10,10 +10,19 @@ namespace Project {
         private Game _game;
 
         public ViewModel() {
-            Game = new Game(true, true);
+            //Game = new Game(true, true);
         }
 
         public Game Game { get => _game; set => _game = value; } 
+
+        public void CreateGame(bool isPlayer1Computer, bool isPlayer2Computer, bool isPlayer1X) {
+            Game = new Game(isPlayer1Computer, isPlayer2Computer, isPlayer1X);
+        }
+
+        public void CreateGame(string player1name, bool isPlayer1Computer, string player2name, bool isPlayer2Computer, bool isPlayer1X) {
+            Game = new Game(player1name, isPlayer1Computer, player2name, isPlayer2Computer, isPlayer1X);
+
+        }
 
         public bool PlayPiece(int col, int row) {
             //bool win = false;

@@ -7,7 +7,19 @@ using System.Threading.Tasks;
 namespace Project {
     public sealed class HumanPlayer : Player {
 
+        public HumanPlayer(GameBoard.Piece p, string name) : base(p, name) {
+
+        }
+
+        public HumanPlayer(string name) : base(name) {
+
+        }
+
         public HumanPlayer(GameBoard.Piece p) : base(p) {
+
+        }
+
+        public HumanPlayer() : base() {
 
         }
 
